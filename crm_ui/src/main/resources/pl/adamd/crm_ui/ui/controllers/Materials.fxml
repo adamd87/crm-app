@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@../../../../../fxml/style/application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.adamd.crm_ui.ui.controllers.Materials">
+    <children>
+      <HBox>
+         <children>
+              <HBox onMouseClicked="#initialize" styleClass="content-view-header" HBox.hgrow="ALWAYS">
+                  <children>
+                      <Label fx:id="title" styleClass="title" text="Materials" />
+                  </children>
+              </HBox>
+            <VBox onMouseClicked="#addNew" styleClass="add-button">
+               <children>
+                  <SVGPath content="M31 12h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552 0-1 0.448-1 1v11h-11c-0.552 0-1 0.448-1 1v6c0 0.552 0.448 1 1 1h11v11c0 0.552 0.448 1 1 1h6c0.552 0 1-0.448 1-1v-11h11c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1z" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+        <TilePane fx:id="container" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <styleClass>
+            <String fx:value="materials-container" />
+            <String fx:value="sp-10" />
+         </styleClass></TilePane>
+    </children>
+</VBox>

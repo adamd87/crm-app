@@ -22,7 +22,7 @@ public class MaterialClientServiceImpl implements MaterialClientService {
     public List<MaterialUI> getAllMaterials(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "http://localhost:8080/api/auth/material/all";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/all";
         ResponseEntity<List<MaterialUI>> responseEntity =
                 restTemplate.exchange(
                         defaultUrl, HttpMethod.GET, entityReq,
@@ -36,7 +36,7 @@ public class MaterialClientServiceImpl implements MaterialClientService {
 
     @Override
     public MaterialUI getMaterialById(String token, Long id) {
-        String defaultUrl = "http://localhost:8080/api/auth/material/by-id/{id}";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
@@ -46,7 +46,7 @@ public class MaterialClientServiceImpl implements MaterialClientService {
 
     @Override
     public MaterialUI addNewMaterial(String token, MaterialUI materialUI) {
-        String postUrl = "http://localhost:8080/api/auth/material/add";
+        String postUrl = "https://crm-eco.herokuapp.com/api/auth/material/add";
         HttpEntity<?> entityReq = getHttpEntity(token, materialUI);
 
         return restTemplate.exchange(postUrl,HttpMethod.POST, entityReq, MaterialUI.class).getBody();
@@ -58,7 +58,7 @@ public class MaterialClientServiceImpl implements MaterialClientService {
 
         HttpEntity<?> entityReq = getHttpEntity(token, materialUI);
 
-        String defaultUrl = "http://localhost:8080/api/auth/material/update/{id}";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, MaterialUI.class).getBody();

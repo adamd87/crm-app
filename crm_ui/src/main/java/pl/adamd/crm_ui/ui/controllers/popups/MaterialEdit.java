@@ -67,6 +67,10 @@ public class MaterialEdit {
             this.materialUI = materialUI;
             this.title.setText("Edytuj asotyment");
             this.name.setText(materialUI.getName());
+            this.producer.setText(materialUI.getProducer());
+            this.power.setText(materialUI.getPower());
+            this.category.setText(materialUI.getCategory());
+            this.price.setText(materialUI.getPrice());
         }
     }
 

@@ -177,4 +177,14 @@
     -fx-fill: secondary-light;
 }
 
+.search-bar {
+    -fx-padding: 0 0 0 20;
+    -fx-spacing: 10;
+}
+
+.table-wrapper {
+    -fx-padding: 20;
+}
+
+
 

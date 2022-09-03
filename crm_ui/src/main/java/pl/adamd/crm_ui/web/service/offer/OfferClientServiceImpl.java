@@ -30,7 +30,7 @@ public class OfferClientServiceImpl implements OfferClientService {
     public List<OfferUI> getAllOffers(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "http://localhost:8080/api/auth/offer/all";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/all";
         ResponseEntity<List<OfferUI>> responseEntity =
                 restTemplate.exchange(
                         defaultUrl, HttpMethod.GET, entityReq,
@@ -44,7 +44,7 @@ public class OfferClientServiceImpl implements OfferClientService {
     @Override
     public OfferUI getOfferById(String token, Long id) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "http://localhost:8080/api/auth/offer/by-id/{id}";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(url, HttpMethod.GET, entityReq, OfferUI.class).getBody();
@@ -53,7 +53,7 @@ public class OfferClientServiceImpl implements OfferClientService {
 
     @Override
     public OfferUI addOffer(String token, OfferUI offerUI) {
-        String postUrl = "http://localhost:8080/api/auth/offer/add";
+        String postUrl = "https://crm-eco.herokuapp.com/api/auth/offer/add";
 
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
 
@@ -64,7 +64,7 @@ public class OfferClientServiceImpl implements OfferClientService {
     @Override
     public OfferUI updateOffer(String token, Long id, OfferUI offerUI) {
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
-        String defaultUrl = "http://localhost:8080/api/auth/offer/update/{id}";
+        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, OfferUI.class).getBody();

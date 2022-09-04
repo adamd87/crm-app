@@ -182,6 +182,11 @@
     -fx-spacing: 10;
 }
 
+.search-bar > TextField, .search-bar > ComboBox {
+    -fx-pref-width: 200px;
+    -fx-max-width: 280px;
+}
+
 .table-wrapper {
     -fx-padding: 20;
 }

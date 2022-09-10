@@ -8,6 +8,8 @@ public interface CustomerClientService {
 
     List<CustomerUI> getAllCustomers(String token);
 
+    List<CustomerUI> getByName(String token, String name);
+
     CustomerUI getCustomerById(String token, Long id);
 
     CustomerUI addNewCustomer(String token, CustomerUI customer);

@@ -26,7 +26,9 @@ public class Dialog {
 
     @FXML
     private void cancel() {
-        okBtn.getScene().getWindow().hide();
+        okBtn.getScene()
+             .getWindow()
+             .hide();
     }
 
     public void show() {
@@ -78,7 +80,8 @@ public class Dialog {
                         controller.cancel();
                         okActionListener.doAction();
                     });
-                } else {
+                }
+                else {
                     controller.okBtn.setVisible(false);
                     controller.closeBtn.setText("CLOSE");
                 }

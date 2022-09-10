@@ -148,6 +148,7 @@
 
 .dialog-button-box {
     -fx-alignment: center-right;
+    -fx-spacing: 5px;
 }
 
 .sp-10 {

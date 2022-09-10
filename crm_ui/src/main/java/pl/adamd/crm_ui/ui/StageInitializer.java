@@ -7,7 +7,8 @@ import pl.adamd.crm_ui.ui.controllers.Login;
 
 @Component
 @AllArgsConstructor
-public class StageInitializer implements ApplicationListener<MainApplication.StageReadyEvent> {
+public class StageInitializer
+        implements ApplicationListener<MainApplication.StageReadyEvent> {
 
     private Login login;
 

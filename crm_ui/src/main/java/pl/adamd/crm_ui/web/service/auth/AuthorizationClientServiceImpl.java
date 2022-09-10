@@ -8,7 +8,8 @@ import pl.adamd.crm_ui.model.auth.request.LoginAccountRequestUI;
 import pl.adamd.crm_ui.model.auth.response.LoggedUser;
 
 @Service
-public class AuthorizationClientServiceImpl implements AuthorizationClientService {
+public class AuthorizationClientServiceImpl
+        implements AuthorizationClientService {
 
     @Autowired
     RestTemplate restTemplate;

@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="480.0"
       styleClass="login-view" stylesheets="@../../../../../fxml/style/application.css"
-      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="pl.adamd.crm_ui.ui.controllers.Login">
     <children>
         <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="600.0" styleClass="login-title">

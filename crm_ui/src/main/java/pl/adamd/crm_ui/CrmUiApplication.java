@@ -9,8 +9,8 @@ import pl.adamd.crm_ui.ui.MainApplication;
 @Configuration
 public class CrmUiApplication {
 
-	public static void main(String[] args) {
-		Application.launch(MainApplication.class, args);
-	}
+    public static void main(String[] args) {
+        Application.launch(MainApplication.class, args);
+    }
 
 }

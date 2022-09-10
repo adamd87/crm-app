@@ -13,9 +13,8 @@ public class LoggedUser {
     public LoggedUser() {
     }
 
-    public LoggedUser(String accessToken,
-                      Long id, String employeeName,
-                      String email, List<String> roles) {
+    public LoggedUser(
+            String accessToken, Long id, String employeeName, String email, List<String> roles) {
 
         this.token = accessToken;
         this.id = id;
@@ -70,12 +69,7 @@ public class LoggedUser {
 
     @Override
     public String toString() {
-        return "LoggedUser{" +
-                "token='" + token + '\'' +
-                ", type='" + type + '\'' +
-                ", employeeName='" + employeeName + '\'' +
-                ", email='" + email + '\'' +
-                ", roles=" + roles +
-                '}';
+        return "LoggedUser{" + "token='" + token + '\'' + ", type='" + type + '\'' + ", employeeName='" + employeeName +
+                '\'' + ", email='" + email + '\'' + ", roles=" + roles + '}';
     }
 }

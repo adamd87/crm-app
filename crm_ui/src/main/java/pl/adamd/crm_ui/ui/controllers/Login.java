@@ -56,31 +56,34 @@ public class Login {
     @FXML
     private TextField username;
 
-    private void attachEvent(){
+    private void attachEvent() {
 
-        username.getScene().setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER){
-                if (closeBtn.isFocused()){
-                    close();
-                }
-                if (loginBtn.isFocused()){
-                    login();
-                }
-            }
-        });
+        username.getScene()
+                .setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.ENTER) {
+                        if (closeBtn.isFocused()) {
+                            close();
+                        }
+                        if (loginBtn.isFocused()) {
+                            login();
+                        }
+                    }
+                });
     }
 
     @FXML
     private void close() {
-        loginBtn.getScene().getWindow().hide();
+        loginBtn.getScene()
+                .getWindow()
+                .hide();
     }
 
 
     @FXML
     private void login() {
 
-        if (username != null && !Objects.equals(username.getText(), "")
-                && password != null && !Objects.equals(password.getText(), "")) {
+        if (username != null && !Objects.equals(username.getText(), "") && password != null &&
+                !Objects.equals(password.getText(), "")) {
             LoginAccountRequestUI loginAccountRequest = new LoginAccountRequestUI();
 
             loginAccountRequest.setEmployeeName(username.getText());

@@ -9,7 +9,8 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 import pl.adamd.crm_ui.CrmUiApplication;
 
-public class MainApplication extends Application {
+public class MainApplication
+        extends Application {
 
     private static ConfigurableApplicationContext applicationContext;
 
@@ -19,7 +20,7 @@ public class MainApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
         applicationContext.publishEvent(new StageReadyEvent(stage));
     }
 
@@ -29,20 +30,20 @@ public class MainApplication extends Application {
         Platform.exit();
     }
 
-    static class StageReadyEvent extends ApplicationEvent {
-        public StageReadyEvent(Stage stage){
+    static class StageReadyEvent
+            extends ApplicationEvent {
+        public StageReadyEvent(Stage stage) {
             super(stage);
         }
-        public Stage getStage(){
+
+        public Stage getStage() {
             return ((Stage) getSource());
         }
     }
 
-    public static ConfigurableApplicationContext getApplicationContext(){
+    public static ConfigurableApplicationContext getApplicationContext() {
         return applicationContext;
     }
-
-
 
 
 }

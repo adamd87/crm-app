@@ -16,7 +16,7 @@ import java.util.List;
 public class CustomerClientServiceImpl implements CustomerClientService {
 
     @Bean
-    RestTemplate restTemplate(){
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
@@ -31,13 +31,21 @@ public class CustomerClientServiceImpl implements CustomerClientService {
     @Override
     public List<CustomerUI> getAllCustomers(String token) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/customer/all";
+        String defaultUrl = "http://localhost:8080/api/auth/customer/all";
         ResponseEntity<List<CustomerUI>> responseEntity =
-                restTemplate.exchange(
-                        defaultUrl, HttpMethod.GET, entityReq,
-                        new ParameterizedTypeReference<>() {
-                        }
-                );
+                restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
+    }
+
+    @Override
+    public List<CustomerUI> getByName(String token, String name) {
+        HttpEntity<?> entityReq = getHttpEntity(token, null);
+        String defaultUrl = "http://localhost:8080/api/auth/customer/by-name?name=" + name;
+        ResponseEntity<List<CustomerUI>> responseEntity =
+                restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
+                });
 
         return responseEntity.getBody();
     }
@@ -45,28 +53,31 @@ public class CustomerClientServiceImpl implements CustomerClientService {
     @Override
     public CustomerUI getCustomerById(String token, Long id) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/customer/by-id/{id}";
+        String defaultUrl = "https://localhost:8080/api/auth/customer/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
-        return restTemplate.exchange(url, HttpMethod.GET, entityReq, CustomerUI.class).getBody();
+        return restTemplate.exchange(url, HttpMethod.GET, entityReq, CustomerUI.class)
+                           .getBody();
 
     }
 
     @Override
     public CustomerUI addNewCustomer(String token, CustomerUI customer) {
         HttpEntity<?> entityReq = getHttpEntity(token, customer);
-        String postUrl = "https://crm-eco.herokuapp.com/api/auth/customer/add";
+        String postUrl = "http://localhost:8080/api/auth/customer/add";
 
-        return restTemplate.exchange(postUrl,HttpMethod.POST, entityReq, CustomerUI.class).getBody();
+        return restTemplate.exchange(postUrl, HttpMethod.PUT, entityReq, CustomerUI.class)
+                           .getBody();
     }
 
     @Override
     public CustomerUI updateCustomer(String token, Long id, CustomerUI customer) {
         HttpEntity<?> entityReq = getHttpEntity(token, customer);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/customer/update/{id}";
+        String defaultUrl = "http://localhost:8080/api/auth/customer/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
-        return restTemplate.exchange(patchUrl,HttpMethod.PATCH, entityReq, CustomerUI.class).getBody();
+        return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, CustomerUI.class)
+                           .getBody();
     }
 
 

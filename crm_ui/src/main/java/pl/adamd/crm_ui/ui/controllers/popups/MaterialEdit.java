@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.springframework.web.client.HttpClientErrorException;
 import pl.adamd.crm_ui.model.MaterialUI;
 
 import java.util.function.Consumer;
@@ -37,7 +38,7 @@ public class MaterialEdit {
         showView(null, saveHandler);
     }
 
-    public static void showView(MaterialUI materialUI, Consumer<MaterialUI> saveHandler){
+    public static void showView(MaterialUI materialUI, Consumer<MaterialUI> saveHandler) {
         try {
             Stage stage = new Stage(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -51,7 +52,7 @@ public class MaterialEdit {
 
             stage.show();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -63,7 +64,8 @@ public class MaterialEdit {
         if (materialUI == null) {
             this.materialUI = new MaterialUI();
             this.title.setText("Dodaj nowy asortyment");
-        } else {
+        }
+        else {
             this.materialUI = materialUI;
             this.title.setText("Edytuj asotyment");
             this.name.setText(materialUI.getName());
@@ -76,14 +78,17 @@ public class MaterialEdit {
 
 
     @FXML
-    private void close(){
-        name.getScene().getWindow().hide();
+    private void close() {
+        name.getScene()
+            .getWindow()
+            .hide();
     }
 
     @FXML
-    private void save(){
+    private void save() {
 
-        try{
+        try {
+
             materialUI.setName(name.getText());
             materialUI.setProducer(producer.getText());
             materialUI.setPower(power.getText());
@@ -93,8 +98,11 @@ public class MaterialEdit {
 
             saveHandler.accept(materialUI);
             close();
-
-        } catch (Exception e){
+        } catch (HttpClientErrorException e) {
+            if (e.contains(HttpClientErrorException.class)) {
+                message.setText("Błąd danych, sprawdź pole 'Nazwa' i pole 'Cena'");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             message.setText("Błąd!");
         }

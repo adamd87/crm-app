@@ -7,13 +7,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import pl.adamd.crm_ui.model.MaterialUI;
 
 import java.util.List;
 
 @Service
-public class MaterialClientServiceImpl implements MaterialClientService {
+public class MaterialClientServiceImpl
+        implements MaterialClientService {
 
     @Autowired
     RestTemplate restTemplate;
@@ -22,13 +24,10 @@ public class MaterialClientServiceImpl implements MaterialClientService {
     public List<MaterialUI> getAllMaterials(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/all";
+        String defaultUrl = "http://localhost:8080/api/auth/material/all";
         ResponseEntity<List<MaterialUI>> responseEntity =
-                restTemplate.exchange(
-                        defaultUrl, HttpMethod.GET, entityReq,
-                        new ParameterizedTypeReference<>() {
-                        }
-                );
+                restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
+                });
 
         return responseEntity.getBody();
 
@@ -36,20 +35,23 @@ public class MaterialClientServiceImpl implements MaterialClientService {
 
     @Override
     public MaterialUI getMaterialById(String token, Long id) {
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/by-id/{id}";
+        String defaultUrl = "http://localhost:8080/api/auth/material/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
 
-        return restTemplate.exchange(url, HttpMethod.GET, entityReq, MaterialUI.class).getBody();
+        return restTemplate.exchange(url, HttpMethod.GET, entityReq, MaterialUI.class)
+                           .getBody();
     }
 
     @Override
     public MaterialUI addNewMaterial(String token, MaterialUI materialUI) {
-        String postUrl = "https://crm-eco.herokuapp.com/api/auth/material/add";
+        String postUrl = "http://localhost:8080/api/auth/material/add";
         HttpEntity<?> entityReq = getHttpEntity(token, materialUI);
 
-        return restTemplate.exchange(postUrl,HttpMethod.POST, entityReq, MaterialUI.class).getBody();
+        return restTemplate.exchange(postUrl, HttpMethod.PUT, entityReq, MaterialUI.class)
+                           .getBody();
+
 
     }
 
@@ -58,10 +60,11 @@ public class MaterialClientServiceImpl implements MaterialClientService {
 
         HttpEntity<?> entityReq = getHttpEntity(token, materialUI);
 
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/material/update/{id}";
+        String defaultUrl = "http://localhost:8080/api/auth/material/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
-        return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, MaterialUI.class).getBody();
+        return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, MaterialUI.class)
+                           .getBody();
 
     }
 

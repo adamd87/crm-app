@@ -33,19 +33,26 @@ public class MainFrame {
 
         try {
             for (Node node : sideBar.getChildren()) {
-                node.getStyleClass().remove("active");
-                if (node.getId().equals(menu.name())) {
-                    node.getStyleClass().add("active");
+                node.getStyleClass()
+                    .remove("active");
+                if (node.getId()
+                        .equals(menu.name())) {
+                    node.getStyleClass()
+                        .add("active");
                 }
             }
-            contentView.getChildren().clear();
+            contentView.getChildren()
+                       .clear();
+
             FXMLLoader fxmlLoader = new FXMLLoader(MainFrame.class.getResource(menu.getFxml()));
             fxmlLoader.setControllerFactory(MainApplication.getApplicationContext()::getBean);
             Parent view = fxmlLoader.load();
 
             AbstractController controller = fxmlLoader.getController();
             controller.setTitle(menu);
-            contentView.getChildren().add(view);
+
+            contentView.getChildren()
+                       .add(view);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +66,7 @@ public class MainFrame {
             fxmlLoader.setControllerFactory(MainApplication.getApplicationContext()::getBean);
             Parent parent = fxmlLoader.load();
             stage.setScene(new Scene(parent));
-//            stage.setFullScreen(true);
+            //            stage.setFullScreen(true);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,14 +78,19 @@ public class MainFrame {
     public void clickMenu(javafx.scene.input.MouseEvent mouseEvent) {
         Node node = (Node) mouseEvent.getSource();
 
-        if (node.getId().equals("Exit")) {
+        if (node.getId()
+                .equals("Exit")) {
             Dialog.DialogBuilder.builder()
-                    .title("Wyjście")
-                    .message("Czy chcesz opuścić aplikację?")
-                    .okActionListener(() -> sideBar.getScene().getWindow().hide())
-                    .build().show();
+                                .title("Wyjście")
+                                .message("Czy chcesz opuścić aplikację?")
+                                .okActionListener(() -> sideBar.getScene()
+                                                               .getWindow()
+                                                               .hide())
+                                .build()
+                                .show();
 
-        } else {
+        }
+        else {
             Menu menu = Menu.valueOf(node.getId());
             loadView(menu);
 

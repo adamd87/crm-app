@@ -14,7 +14,8 @@ import pl.adamd.crm_ui.model.OfferUI;
 import java.util.List;
 
 @Component
-public class OfferClientServiceImpl implements OfferClientService {
+public class OfferClientServiceImpl
+        implements OfferClientService {
 
     private static HttpEntity<?> getHttpEntity(String token, OfferUI offerUI) {
         HttpHeaders headers = new HttpHeaders();
@@ -30,13 +31,10 @@ public class OfferClientServiceImpl implements OfferClientService {
     public List<OfferUI> getAllOffers(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/all";
+        String defaultUrl = "http://localhost:8080/api/auth/offer/all";
         ResponseEntity<List<OfferUI>> responseEntity =
-                restTemplate.exchange(
-                        defaultUrl, HttpMethod.GET, entityReq,
-                        new ParameterizedTypeReference<>() {
-                        }
-                );
+                restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
+                });
 
         return responseEntity.getBody();
     }
@@ -44,30 +42,33 @@ public class OfferClientServiceImpl implements OfferClientService {
     @Override
     public OfferUI getOfferById(String token, Long id) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/by-id/{id}";
+        String defaultUrl = "http://localhost:8080api/auth/offer/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
-        return restTemplate.exchange(url, HttpMethod.GET, entityReq, OfferUI.class).getBody();
+        return restTemplate.exchange(url, HttpMethod.GET, entityReq, OfferUI.class)
+                           .getBody();
 
     }
 
     @Override
     public OfferUI addOffer(String token, OfferUI offerUI) {
-        String postUrl = "https://crm-eco.herokuapp.com/api/auth/offer/add";
+        String postUrl = "http://localhost:8080/api/auth/offer/add";
 
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
 
-        return restTemplate.exchange(postUrl, HttpMethod.POST, entityReq, OfferUI.class).getBody();
+        return restTemplate.exchange(postUrl, HttpMethod.POST, entityReq, OfferUI.class)
+                           .getBody();
 
     }
 
     @Override
     public OfferUI updateOffer(String token, Long id, OfferUI offerUI) {
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
-        String defaultUrl = "https://crm-eco.herokuapp.com/api/auth/offer/update/{id}";
+        String defaultUrl = "http://localhost:8080/api/auth/offer/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
-        return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, OfferUI.class).getBody();
+        return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, OfferUI.class)
+                           .getBody();
 
     }
 }

@@ -15,8 +15,7 @@ import java.util.function.Consumer;
 
 
 @Controller
-public class Materials
-        extends AbstractController {
+public class Materials extends AbstractController {
 
     @FXML
     private TilePane container;
@@ -54,10 +53,7 @@ public class Materials
     }
 
 
-    private class MaterialItem
-            extends HBox {
-
-
+    private class MaterialItem extends HBox {
         public MaterialItem(MaterialUI materialUI, Consumer<MaterialUI> materialUIConsumer) {
 
             SVGPath icon = new SVGPath();

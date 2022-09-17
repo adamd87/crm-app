@@ -1,6 +1,7 @@
 package pl.adamd.crm_ui.web.service.offer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,8 +15,7 @@ import pl.adamd.crm_ui.model.OfferUI;
 import java.util.List;
 
 @Component
-public class OfferClientServiceImpl
-        implements OfferClientService {
+public class OfferClientServiceImpl implements OfferClientService {
 
     private static HttpEntity<?> getHttpEntity(String token, OfferUI offerUI) {
         HttpHeaders headers = new HttpHeaders();
@@ -25,13 +25,15 @@ public class OfferClientServiceImpl
 
     @Autowired
     RestTemplate restTemplate;
+    @Value("${api.url}")
+    String apiHost;
 
 
     @Override
     public List<OfferUI> getAllOffers(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "http://localhost:8080/api/auth/offer/all";
+        String defaultUrl = apiHost + "api/auth/offer/all";
         ResponseEntity<List<OfferUI>> responseEntity =
                 restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
                 });
@@ -42,7 +44,7 @@ public class OfferClientServiceImpl
     @Override
     public OfferUI getOfferById(String token, Long id) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = "http://localhost:8080api/auth/offer/by-id/{id}";
+        String defaultUrl = apiHost + "auth/offer/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(url, HttpMethod.GET, entityReq, OfferUI.class)
@@ -52,7 +54,7 @@ public class OfferClientServiceImpl
 
     @Override
     public OfferUI addOffer(String token, OfferUI offerUI) {
-        String postUrl = "http://localhost:8080/api/auth/offer/add";
+        String postUrl = apiHost + "api/auth/offer/add";
 
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
 
@@ -64,7 +66,7 @@ public class OfferClientServiceImpl
     @Override
     public OfferUI updateOffer(String token, Long id, OfferUI offerUI) {
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
-        String defaultUrl = "http://localhost:8080/api/auth/offer/update/{id}";
+        String defaultUrl = apiHost + "api/auth/offer/update/{id}";
         String patchUrl = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, OfferUI.class)

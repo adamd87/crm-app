@@ -4,7 +4,7 @@ public enum Menu {
     Home("Witaj"),
     Customers("Klienci"),
     Offers("Oferty"),
-    Materials("Materiały"),
+    Materials("Produkty"),
     Agreements("Umowy"),
     Realizations("Realizacje"),
     Agents("Agenci"),

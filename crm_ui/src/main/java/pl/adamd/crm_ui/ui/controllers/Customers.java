@@ -28,6 +28,8 @@ public class Customers extends AbstractController {
     @FXML
     private TableView<CustomerGetUI> tableView;
     @FXML
+    private TableColumn<CustomerGetUI, String> clientId;
+    @FXML
     private TableColumn<CustomerGetUI, String> fullName;
     @FXML
     private TableColumn<CustomerGetUI, String> phone;
@@ -54,6 +56,7 @@ public class Customers extends AbstractController {
         ObservableList<CustomerGetUI> customerGetUIObservableList =
                 FXCollections.observableList(getCustomerGetUIList());
 
+        clientId.setCellValueFactory(new PropertyValueFactory<>("clientId"));
         fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));

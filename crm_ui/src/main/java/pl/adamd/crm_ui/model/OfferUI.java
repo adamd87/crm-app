@@ -17,4 +17,5 @@ public class OfferUI {
     private BigDecimal myWarmthBCost;
     private BigDecimal cleanAirA;
     private BigDecimal cleanAirB;
+    private String comment;
 }

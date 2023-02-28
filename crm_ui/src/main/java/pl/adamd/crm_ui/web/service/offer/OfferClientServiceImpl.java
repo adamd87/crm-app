@@ -9,8 +9,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import pl.adamd.crm_ui.model.CustomerGetUI;
 import pl.adamd.crm_ui.model.CustomerUI;
 import pl.adamd.crm_ui.model.OfferUI;
+import pl.adamd.crm_ui.model.OfferUIViewToList;
 
 import java.util.List;
 
@@ -30,11 +32,11 @@ public class OfferClientServiceImpl implements OfferClientService {
 
 
     @Override
-    public List<OfferUI> getAllOffers(String token) {
+    public List<OfferUIViewToList> getAllOffers(String token) {
 
         HttpEntity<?> entityReq = getHttpEntity(token, null);
         String defaultUrl = apiHost + "api/auth/offer/all";
-        ResponseEntity<List<OfferUI>> responseEntity =
+        ResponseEntity<List<OfferUIViewToList>> responseEntity =
                 restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
                 });
 
@@ -44,7 +46,8 @@ public class OfferClientServiceImpl implements OfferClientService {
     @Override
     public OfferUI getOfferById(String token, Long id) {
         HttpEntity<?> entityReq = getHttpEntity(token, null);
-        String defaultUrl = apiHost + "auth/offer/by-id/{id}";
+
+        String defaultUrl = apiHost + "api/auth/offer/by-id/{id}";
         String url = defaultUrl.replace("{id}", String.valueOf(id));
 
         return restTemplate.exchange(url, HttpMethod.GET, entityReq, OfferUI.class)
@@ -58,7 +61,7 @@ public class OfferClientServiceImpl implements OfferClientService {
 
         HttpEntity<?> entityReq = getHttpEntity(token, offerUI);
 
-        return restTemplate.exchange(postUrl, HttpMethod.POST, entityReq, OfferUI.class)
+        return restTemplate.exchange(postUrl, HttpMethod.PUT, entityReq, OfferUI.class)
                            .getBody();
 
     }
@@ -72,5 +75,16 @@ public class OfferClientServiceImpl implements OfferClientService {
         return restTemplate.exchange(patchUrl, HttpMethod.PATCH, entityReq, OfferUI.class)
                            .getBody();
 
+    }
+
+    @Override
+    public List<OfferUIViewToList> getByName(String token, String name) {
+        HttpEntity<?> entityReq = getHttpEntity(token, null);
+        String defaultUrl = apiHost + "api/auth/offer/by-name?name=" + name;
+        ResponseEntity<List<OfferUIViewToList>> responseEntity =
+                restTemplate.exchange(defaultUrl, HttpMethod.GET, entityReq, new ParameterizedTypeReference<>() {
+                });
+
+        return responseEntity.getBody();
     }
 }

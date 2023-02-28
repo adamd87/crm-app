@@ -1,12 +1,13 @@
 package pl.adamd.crm_ui.web.service.offer;
 
 import pl.adamd.crm_ui.model.OfferUI;
+import pl.adamd.crm_ui.model.OfferUIViewToList;
 
 import java.util.List;
 
 public interface OfferClientService {
 
-    List<OfferUI> getAllOffers(String token);
+    List<OfferUIViewToList> getAllOffers(String token);
 
     OfferUI getOfferById(String token, Long id);
 
@@ -14,4 +15,5 @@ public interface OfferClientService {
 
     OfferUI updateOffer(String token, Long id, OfferUI offerUI);
 
+    List<OfferUIViewToList> getByName(String accessToken, String text);
 }

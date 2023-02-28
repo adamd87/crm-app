@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="dialog" stylesheets="@../../../../../../fxml/style/application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.adamd.crm_ui.ui.controllers.popups.OfferEdit">
+    <children>
+        <VBox styleClass="dialog-icon">
+            <children>
+                <SVGPath content="M29 4h-9c0-2.209-1.791-4-4-4s-4 1.791-4 4h-9c-0.552 0-1 0.448-1 1v26c0 0.552 0.448 1 1 1h26c0.552 0 1-0.448 1-1v-26c0-0.552-0.448-1-1-1zM16 2c1.105 0 2 0.895 2 2s-0.895 2-2 2c-1.105 0-2-0.895-2-2s0.895-2 2-2zM28 30h-24v-24h4v3c0 0.552 0.448 1 1 1h14c0.552 0 1-0.448 1-1v-3h4v24z&#10;M14 26.828l-6.414-7.414 1.828-1.828 4.586 3.586 8.586-7.586 1.829 1.828z" scaleX="3.0" scaleY="3.0" />
+            </children>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="700.0" styleClass="dialog-body">
+            <children>
+                <Label fx:id="title" styleClass="dialog-title" text="Label" />
+                <Label fx:id="message" />
+                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="dialog-message-box">
+                    <children>
+                        <Label fx:id="clientFullName" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="dialog-message-box">
+                    <children>
+                        <Label text="Numer klienta" />
+                        <TextField fx:id="clientId" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="dialog-message-box">
+                    <children>
+                        <Label text="Produkty" />
+                        <ListView fx:id="materialUIListView" prefHeight="61.0" prefWidth="660.0" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="dialog-message-box">
+                    <children>
+                        <Label text="Komentarz" />
+                        <TextField fx:id="comment" />
+                    </children>
+                </VBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" styleClass="dialog-button-box">
+                    <children>
+                        <Button mnemonicParsing="false" styleClass="wid-120" text="PDF" />
+                        <Button mnemonicParsing="false" onAction="#save" styleClass="wid-120" text="Zapisz" />
+                        <Button mnemonicParsing="false" onAction="#close" styleClass="wid-120" text="Anuluj" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</HBox>

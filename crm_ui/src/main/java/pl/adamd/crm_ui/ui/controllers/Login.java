@@ -35,7 +35,7 @@ public class Login {
     @Autowired
     MainFrame mainFrame;
 
-    LoggedUser loggedUser;
+    public LoggedUser loggedUser;
 
     public LoggedUser getLoggedUser() {
         return loggedUser;
